@@ -1,0 +1,293 @@
+/* Estilos generales del cuerpo de la página */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+@keyframes deslizarEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Estilos del contenedor principal para escritorio (layout de GRID) */
+#contenedor-principal { /* ¡ID corregido de 'contenedorPrincipal' a 'contenedor-principal' para coincidir con HTML! */
+    display: grid; /* ¡Esto lo convierte en un contenedor Grid! */
+    
+    /* Definimos las filas: cabecera, contenido/sidebar, pie de página */
+    grid-template-rows: auto 1fr auto; 
+    
+    /* Definimos dos columnas para pantallas grandes: una de 200px para sidebar, otra para el resto */
+    grid-template-columns: 200px 1fr; 
+
+    min-height: 100vh; /* Asegura que el contenedor ocupe al menos el alto completo de la ventana */
+    max-width: 960px; /* Ancho máximo del contenedor en escritorio */
+    margin: 0 auto; /* Centra el contenedor principal en la página */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra */
+    background-color: #ffffff; /* Fondo blanco */
+    
+    /* ¡Aquí definimos el layout usando los nombres de las áreas para escritorio! */
+    grid-template-areas:
+        "header header"          /* La cabecera abarca ambas columnas */
+        "sidebar main-content"   /* La barra lateral a la izquierda, el contenido a la derecha */
+        "footer footer";         /* El pie de página abarca ambas columnas */
+}
+
+/* Estilos para la CABECERA */
+#cabecera {
+    grid-area: header; /* Asignamos esta área a la cabecera */
+    background-color: #28a745; /* Verde para la cabecera */
+    color: white; /* Texto blanco */
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px 5px 0 0; /* Bordes redondeados arriba */
+    display: flex; /* Flexbox para centrar elementos internos en la cabecera */
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+/* Define la animación fuera de cualquier selector */
+
+#cabecera h1 {
+    margin-top: 0; /* Elimina el margen superior predeterminado del h1 */
+    font-size: 1.5em;
+    animation: deslizarEntrada 1s ease-out forwards; /* Aplica la animación de entrada */
+}
+
+/* Estilos para la BARRA LATERAL IZQUIERDA */
+#barra-lateral-izquierda {
+    grid-area: sidebar; /* Asignamos esta área a la barra lateral */
+    background-color: #e9ecef; /* Un gris claro para el fondo de la barra */
+    padding: 20px;
+    border-right: 1px solid #ddd; /* Un borde a la derecha para separarla del contenido */
+}
+
+#barra-lateral-izquierda h3 {
+    color: #333;
+    margin-top: 0;
+}
+
+#barra-lateral-izquierda ul {
+    list-style: none; /* Quita las viñetas de la lista */
+    padding: 0;
+}
+
+#barra-lateral-izquierda li {
+    margin-bottom: 10px;
+}
+
+#barra-lateral-izquierda a {
+    display: block; /* Hace que el enlace ocupe todo el ancho del li */
+    padding: 5px 0;
+    color: #007bff; /* Color azul */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Transición suave para el color */
+}
+
+#barra-lateral-izquierda a:hover {
+    text-decoration: underline;
+    color: #98b300;
+}
+
+
+/* Estilos para el CONTENIDO PRINCIPAL */
+#contenido-principal { /* Este es el nuevo div que creamos en HTML */
+    grid-area: main-content; /* Asignamos esta área al contenido principal */
+    padding: 20px; /* Para darle espacio interno a tu contenido */
+}
+
+/* Estilos para el PIE DE PÁGINA */
+#pie-de-pagina {
+    grid-area: footer; /* Asignamos esta área al pie de página */
+    background-color: #343a40; /* Gris oscuro para el pie de página */
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9em;
+    border-radius: 0 0 5px 5px; /* Bordes redondeados abajo */
+    /* margin-top: 20px; /* Esto no es necesario con Grid Area si footer está al final de la rejilla */
+}
+
+/* Estilos de las secciones generales (dentro de #contenido-principal) */
+.seccion {
+    padding: 20px; /* Restauramos el padding original para consistencia */
+    margin-bottom: 15px; /* Espacio entre secciones */
+    border-bottom: 1px solid #ddd; /* Línea divisoria suave */
+    /* Las propiedades de background-color, border-radius y box-shadow
+       las moveremos para la media query móvil si solo las quieres ahí,
+       o las dejamos aquí si son generales. Las dejaré aquí por ahora. */
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra más suave */
+}
+
+/* Estilo para imagen dentro de cabecera (ya lo tenías bien) */
+#cabecera img {
+    max-width: 100%;
+    height: auto;
+    margin: 15px auto;
+    border-radius: 8px; /* Mantener bordes redondeados */
+    display: block; /* Para que margin: auto funcione correctamente */
+}
+
+/* Estilos para los enlaces (todos los a) */
+a {
+    color: #007bff; /* Un azul bonito para los enlaces, restaurado */
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    padding: 8px; /* Restaurado el padding original de tabla */
+    border: 1px solid #ddd;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Estilos para el formulario (lo sacamos de la media query para que aplique siempre, luego se ajustará en móvil) */
+/* Estilos para cada grupo de label e input en el formulario */
+.campo-formulario {
+    display: flex; 
+    flex-direction: column; 
+    margin-bottom: 15px; 
+}
+
+.campo-formulario label {
+    margin-bottom: 5px; 
+    font-weight: bold; 
+    color: #555; 
+}
+
+.campo-formulario input[type="text"],
+.campo-formulario input[type="email"],
+.campo-formulario textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+/* Estilos para el botón de envío del formulario */
+.campo-formulario-boton {
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px; 
+}
+
+.campo-formulario-boton button {
+    background-color: #007bff; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; 
+    font-size: 1.1em;
+    transition: background-color 0.9s ease transform 0.9s ease; /* Transición suave para el color de fondo y transformaciones */
+}
+
+.campo-formulario-boton button:hover {
+    background-color: #0056b3; 
+    transform: translateY(-3px); /* Efecto de zoom al pasar el ratón */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+}
+
+
+/* --- MEDIA QUERY PARA PANTALLAS MÁS PEQUEÑAS (MÓVILES) --- */
+@media screen and (max-width: 768px) {
+    #contenedor-principal {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        max-width: none; /* Elimina el límite de ancho para móviles */
+        margin: 0; /* Elimina márgenes laterales */
+        box-shadow: none; /* Elimina la sombra para un diseño más limpio en móvil */
+        
+        /* Volvemos a una sola columna para móviles */
+        grid-template-columns: 1fr; 
+        grid-template-areas: /* El orden en que se apilarán los elementos en móvil */
+            "header"
+            "sidebar" /* La barra lateral ahora se apila debajo de la cabecera */
+            "main-content"
+            "footer";
+    }
+
+    #cabecera {
+        padding: 15px; /* Reduce el padding de la cabecera */
+    }
+
+    #cabecera h1 {
+        font-size: 1.8em; /* Hace el título más pequeño para pantallas chicas */
+        animation: deslizarEntrada 1s ease-out forwards;
+    }
+
+    .seccion {
+        padding: 15px; /* Reduce el padding de las secciones */
+        margin-bottom: 10px; /* Reduce el margen entre secciones */
+        border-bottom: 1px solid #ddd; /* Línea divisoria suave */
+    }
+    
+    /* Estilos para la barra lateral en móvil */
+    #barra-lateral-izquierda {
+        border-right: none; /* Elimina el borde lateral en móvil */
+        border-bottom: 1px solid #ddd; /* Añade un borde inferior para separarlo */
+        padding: 15px; /* Ajusta el padding */
+        transition: color 0.8s ease; /* Transición suave para cambios de color */
+    }
+    #barra-lateral-izquierda a:hover {
+        color: #aa9105; /* Ya lo tienes, solo verifica */
+    }
+
+
+    /* Ajuste para las tablas en pantallas pequeñas */
+    table, thead, tbody, th, td, tr {
+        display: block; /* Hace que los elementos de la tabla se comporten como bloques */
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px; /* Oculta los encabezados originales de la tabla */
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid #eee; /* Añade un borde inferior a las celdas */
+        position: relative;
+        padding-left: 50%; /* Deja espacio para la "etiqueta" del dato */
+        text-align: right;
+    }
+
+    td:before {
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        content: attr(data-label); 
+    }
+
+    /* Aseguramos que los enlaces se vean bien */
+    a {
+        word-wrap: break-word; /* Permite que el texto se rompa en varias líneas */
+    }
+    /* El cierre de la media query @media screen and (max-width: 768px) } debe ir aquí */
+}
